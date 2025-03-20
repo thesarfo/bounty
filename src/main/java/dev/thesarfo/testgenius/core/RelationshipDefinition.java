@@ -2,10 +2,8 @@ package dev.thesarfo.testgenius.core;
 
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.UUID;
 
 /**
  * Defines a relationship between two entities.
@@ -67,28 +65,24 @@ public class RelationshipDefinition {
 
     private void establishOneToMany(List<Map<String, Object>> sourceEntities,
                                     List<Map<String, Object>> targetEntities) {
-        // Divide target entities among source entities
         int sourceSize = sourceEntities.size();
 
         for (int i = 0; i < targetEntities.size(); i++) {
             Map<String, Object> sourceEntity = sourceEntities.get(i % sourceSize);
             Map<String, Object> targetEntity = targetEntities.get(i);
 
-            // Add to the collection in the source entity
             @SuppressWarnings("unchecked")
             List<Map<String, Object>> collection = (List<Map<String, Object>>)
                     sourceEntity.computeIfAbsent(name, k -> new ArrayList<>());
 
             collection.add(targetEntity);
 
-            // Set the back reference
             targetEntity.put(source.getName().toLowerCase(), sourceEntity);
         }
     }
 
     private void establishManyToOne(List<Map<String, Object>> sourceEntities,
                                     List<Map<String, Object>> targetEntities) {
-        // Assign a random target to each source
         int targetSize = targetEntities.size();
 
         for (Map<String, Object> sourceEntity : sourceEntities) {
@@ -101,9 +95,7 @@ public class RelationshipDefinition {
 
     private void establishManyToMany(List<Map<String, Object>> sourceEntities,
                                      List<Map<String, Object>> targetEntities) {
-        // For each source entity, assign a random number of target entities
         for (Map<String, Object> sourceEntity : sourceEntities) {
-            // Decide how many targets to assign (between 1 and 5)
             int count = 1 + (int) (Math.random() * 5);
             count = Math.min(count, targetEntities.size());
 
@@ -111,7 +103,6 @@ public class RelationshipDefinition {
             List<Map<String, Object>> collection = (List<Map<String, Object>>)
                     sourceEntity.computeIfAbsent(name, k -> new ArrayList<>());
 
-            // Assign random targets
             List<Integer> assignedIndices = new ArrayList<>();
             for (int i = 0; i < count; i++) {
                 int randomIndex;
