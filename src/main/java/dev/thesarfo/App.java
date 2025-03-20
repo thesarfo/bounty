@@ -4,12 +4,11 @@ import dev.thesarfo.testgenius.constraints.NumericConstraint;
 import dev.thesarfo.testgenius.core.DataSet;
 import dev.thesarfo.testgenius.core.EntityDefinition;
 import dev.thesarfo.testgenius.core.FieldType;
+import dev.thesarfo.testgenius.core.RelationType;
 import dev.thesarfo.testgenius.core.TestDataGenerator;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.List;
-import java.util.Map;
 
 /**
  * TEST GENIUS!
@@ -30,20 +29,39 @@ public class App
                     numConstraint.min(18).max(80);
                 });
 
+        EntityDefinition user = generator.defineEntity("User")
+                .withField("id", FieldType.UUID)
+                .withField("username", FieldType.USERNAME);
+
+        EntityDefinition profile = generator.defineEntity("Profile")
+                .withField("id", FieldType.UUID)
+                .withField("bio", FieldType.TEXT);
+
+        // Each user has one profile
+        user.withRelationship("profile", profile, RelationType.ONE_TO_ONE);
+
         // Generate 10 people
         DataSet dataSet = generator.generate()
                 .entities(person, 10)
                 .build();
 
-        // Get the generated data
-        List<Map<String, Object>> people = dataSet.getEntities("Person");
+        DataSet userSet = generator.generate()
+                .entities(user, 5)
+                .entities(profile, 5)
+                .build();
 
-        // Print the data
-        for (Map<String, Object> p : people) {
-            System.out.println(p);
-        }
+//        // Get the generated data
+//        List<Map<String, Object>> people = dataSet.getEntities("Person");
+//
+//        // Print the data
+//        for (Map<String, Object> p : people) {
+//            System.out.println(p);
+//        }
 
         // Export to JSON
         dataSet.exportToJson(new File("people.json"));
+        dataSet.exportToSql(new File("people.sql"));
+        dataSet.exportToCsv(new File("people.csv"));
+        userSet.exportToJson(new File("users.json"));
     }
 }
