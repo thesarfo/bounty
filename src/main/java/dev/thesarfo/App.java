@@ -1,11 +1,11 @@
 package dev.thesarfo;
 
-import dev.thesarfo.testgenius.constraints.NumericConstraint;
-import dev.thesarfo.testgenius.core.DataSet;
-import dev.thesarfo.testgenius.core.EntityDefinition;
-import dev.thesarfo.testgenius.core.FieldType;
-import dev.thesarfo.testgenius.core.RelationType;
-import dev.thesarfo.testgenius.core.TestDataGenerator;
+import dev.thesarfo.bounty.constraints.NumericConstraint;
+import dev.thesarfo.bounty.core.DataSet;
+import dev.thesarfo.bounty.core.EntityDefinition;
+import dev.thesarfo.bounty.core.FieldType;
+import dev.thesarfo.bounty.core.RelationType;
+import dev.thesarfo.bounty.core.TestDataGenerator;
 
 import java.io.File;
 import java.io.IOException;
@@ -49,6 +49,7 @@ public class App
                 .entities(user, 5)
                 .entities(profile, 5)
                 .build();
+
 
 //        // Get the generated data
 //        List<Map<String, Object>> people = dataSet.getEntities("Person");

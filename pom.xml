@@ -3,13 +3,13 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>dev.thesarfo</groupId>
-  <artifactId>test-genius</artifactId>
+  <artifactId>bounty</artifactId>
   <version>1.0-SNAPSHOT</version>
   <packaging>jar</packaging>
 
-  <name>test-genius</name>
+  <name>bounty</name>
   <description>A flexible library for generating realistic test data</description>
-  <url>https://github.com/thesarfo/test-genius</url>
+  <url>https://github.com/thesarfo/bounty</url>
 
   <licenses>
     <license>
@@ -27,9 +27,9 @@
   </developers>
 
   <scm>
-    <connection>scm:git:git://github.com/thesarfo/test-genius.git</connection>
-    <developerConnection>scm:git:ssh://github.com:thesarfo/test-genius.git</developerConnection>
-    <url>https://github.com/thesarfo/test-genius</url>
+    <connection>scm:git:git://github.com/thesarfo/bounty.git</connection>
+    <developerConnection>scm:git:ssh://github.com:thesarfo/bounty.git</developerConnection>
+    <url>https://github.com/thesarfo/bounty</url>
   </scm>
 
   <properties>
