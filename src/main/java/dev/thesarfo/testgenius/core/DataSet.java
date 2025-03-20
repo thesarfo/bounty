@@ -1,9 +1,10 @@
 package dev.thesarfo.testgenius.core;
 
 
-
+import dev.thesarfo.testgenius.exporters.CsvExporter;
 import dev.thesarfo.testgenius.exporters.DataExporter;
 import dev.thesarfo.testgenius.exporters.JsonExporter;
+import dev.thesarfo.testgenius.exporters.SqlExporter;
 
 import java.io.File;
 import java.io.IOException;
@@ -56,11 +57,33 @@ public class DataSet {
     /**
      * Exports the dataset to a JSON file.
      *
-     * @param file The destination file
+     * @param file The destination file in JSON Format
      * @throws IOException If an I/O error occurs
      */
     public void exportToJson(File file) throws IOException {
         DataExporter exporter = new JsonExporter();
+        exporter.export(this, file);
+    }
+
+    /**
+     * Exports the dataset to a SQL file.
+     *
+     * @param file The destination file in SQL Format
+     * @throws IOException If an I/O error occurs
+     */
+    public void exportToSql(File file) throws IOException {
+        DataExporter exporter = new SqlExporter();
+        exporter.export(this, file);
+    }
+
+    /**
+     * Exports the dataset to a CSV file.
+     *
+     * @param file The destination file in CSV Format
+     * @throws IOException If an I/O error occurs
+     */
+    public void exportToCsv(File file) throws IOException {
+        DataExporter exporter = new CsvExporter();
         exporter.export(this, file);
     }
 
