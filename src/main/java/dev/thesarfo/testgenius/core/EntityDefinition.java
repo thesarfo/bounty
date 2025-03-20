@@ -2,6 +2,7 @@ package dev.thesarfo.testgenius.core;
 
 
 import dev.thesarfo.testgenius.constraints.Constraint;
+import dev.thesarfo.testgenius.constraints.NumericConstraint;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -32,7 +33,9 @@ public class EntityDefinition {
      * @return This entity definition for chaining
      */
     public EntityDefinition withField(String name, FieldType type) {
-        fields.add(new FieldDefinition(name, type));
+        FieldDefinition field = new FieldDefinition(name, type);
+        field.setConstraint(field.createConstraint());
+        fields.add(field);
         return this;
     }
 
@@ -47,8 +50,16 @@ public class EntityDefinition {
     public EntityDefinition withField(String name, FieldType type,
                                       ConstraintConfigurator constraintConfigurator) {
         FieldDefinition field = new FieldDefinition(name, type);
-        Constraint constraint = field.createConstraint();
+
+        Constraint constraint;
+        if (type == FieldType.INTEGER || type == FieldType.DECIMAL) {
+            constraint = new NumericConstraint();
+        } else {
+            constraint = field.createConstraint();
+        }
+
         constraintConfigurator.configure(constraint);
+        field.setConstraint(constraint);
         fields.add(field);
         return this;
     }
