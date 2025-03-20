@@ -11,15 +11,17 @@ import java.util.UUID;
 public class UuidGenerator implements Generator {
     @Override
     public Object generate(Constraint constraint) {
-        if (constraint.getDefaultValue() != null) {
-            return constraint.getDefaultValue();
+        if(constraint != null){
+            if (constraint.getDefaultValue() != null) {
+                return constraint.getDefaultValue();
+            }
+
+            if (constraint.hasAllowedValues()) {
+                int index = (int) (Math.random() * constraint.getAllowedValues().size());
+                return constraint.getAllowedValues().get(index);
+            }
         }
 
-        if (constraint.hasAllowedValues()) {
-            int index = (int) (Math.random() * constraint.getAllowedValues().size());
-            return constraint.getAllowedValues().get(index);
-        }
-
-        return UUID.randomUUID().toString();
+        return UUID.randomUUID();
     }
 }

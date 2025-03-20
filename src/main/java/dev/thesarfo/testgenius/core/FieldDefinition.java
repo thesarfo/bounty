@@ -67,4 +67,8 @@ public class FieldDefinition {
     public Object generateValue() {
         return generator.generate(constraint);
     }
+
+    public void setConstraint(Constraint constraint) {
+        this.constraint = constraint;
+    }
 }
