@@ -11,7 +11,7 @@ random values, Bounty lets you define data models and generates values that look
 - Export data to JSON, SQL, or CSV
 - Integrate with frameworks like Spring Boot, Micronaut, Quarkus, etc.
 
-## Get Started
+## Quick Start
 
 ### Maven
 
@@ -30,7 +30,6 @@ random values, Bounty lets you define data models and generates values that look
 implementation 'io.github.thesarfo:bounty:1.0.1'
 ```
 
-## Quick Start
 
 ```java
 // Create a generator
