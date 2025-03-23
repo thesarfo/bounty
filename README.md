@@ -13,7 +13,7 @@ random values, Bounty lets you define data models and generates values that look
 
 ## Quick Start
 
-### Maven
+Add the dependency to your project:
 
 ```xml
 
@@ -24,13 +24,7 @@ random values, Bounty lets you define data models and generates values that look
 </dependency>
 ```
 
-### Gradle
-
-```groovy
-implementation 'io.github.thesarfo:bounty:1.0.1'
-```
-
-
+Generate your darta
 ```java
 // Create a generator
 TestDataGenerator generator = new TestDataGenerator();
@@ -49,12 +43,9 @@ DataSet dataSet = generator.generate()
         .build();
 
 // Export to JSON
-dataSet.
-
-exportToJson(new File("people.json"));
+dataSet.exportToJson(new File("people.json"));
 ```
 
-## Documentation
 
 For complete documentation including:
 
